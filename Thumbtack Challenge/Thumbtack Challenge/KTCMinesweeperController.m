@@ -88,6 +88,8 @@
             [nButton setIsMine:NO];
             [nButton setBackgroundColor:[UIColor blackColor]];
             [nButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [nButton addTarget:self action:@selector(buttonTouchedDown) forControlEvents:UIControlEventTouchDown];
+            [nButton addTarget:self action:@selector(buttonTouchUp) forControlEvents:UIControlEventTouchUpOutside | UIControlEventTouchUpInside];
             
             [buttonsContainer addSubview:nButton];
             [nthRow addObject:nButton];
@@ -204,6 +206,15 @@
         [self resetGame];
     } else {
         
+    }
+}
+
+- (void)buttonTouchedDown {
+    [smiley setImage:[UIImage imageNamed:@"uhoh.gif"] forState:UIControlStateNormal];
+}
+- (void)buttonTouchUp {
+    if (!isGameOver) {
+        [smiley setImage:[UIImage imageNamed:@"smile.gif"] forState:UIControlStateNormal];        
     }
 }
 

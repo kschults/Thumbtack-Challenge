@@ -16,6 +16,8 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *buttonsContainer;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *smiley;
 
+- (IBAction)buttonTouchedDown;
+- (IBAction)buttonTouchUp;
 - (IBAction)buttonClicked:(id)sender;
 - (IBAction)smileyClicked:(id)sender;
 

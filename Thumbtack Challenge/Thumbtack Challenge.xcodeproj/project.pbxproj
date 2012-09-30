@@ -18,6 +18,8 @@
 		C0F30DBF1618C78B001B72D2 /* KTCCoordinateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */; };
 		C0F30DF51618EB06001B72D2 /* dead.gif in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DF31618EB06001B72D2 /* dead.gif */; };
 		C0F30DF61618EB06001B72D2 /* smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DF41618EB06001B72D2 /* smile.gif */; };
+		C0F30DF91618F0DB001B72D2 /* cool.gif in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DF71618F0DB001B72D2 /* cool.gif */; };
+		C0F30DFA1618F0DB001B72D2 /* uhoh.gif in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DF81618F0DB001B72D2 /* uhoh.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCCoordinateButton.m; sourceTree = "<group>"; };
 		C0F30DF31618EB06001B72D2 /* dead.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dead.gif; sourceTree = "<group>"; };
 		C0F30DF41618EB06001B72D2 /* smile.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile.gif; sourceTree = "<group>"; };
+		C0F30DF71618F0DB001B72D2 /* cool.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cool.gif; sourceTree = "<group>"; };
+		C0F30DF81618F0DB001B72D2 /* uhoh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = uhoh.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 		C0F30DF21618EB06001B72D2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C0F30DF71618F0DB001B72D2 /* cool.gif */,
+				C0F30DF81618F0DB001B72D2 /* uhoh.gif */,
 				C0F30DF31618EB06001B72D2 /* dead.gif */,
 				C0F30DF41618EB06001B72D2 /* smile.gif */,
 			);
@@ -180,6 +186,8 @@
 				C0F30DB91618C23C001B72D2 /* KTCMinesweeperController.xib in Resources */,
 				C0F30DF51618EB06001B72D2 /* dead.gif in Resources */,
 				C0F30DF61618EB06001B72D2 /* smile.gif in Resources */,
+				C0F30DF91618F0DB001B72D2 /* cool.gif in Resources */,
+				C0F30DFA1618F0DB001B72D2 /* uhoh.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
