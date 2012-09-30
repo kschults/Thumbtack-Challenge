@@ -12,6 +12,7 @@
 #import "KTCCoordinateButton.h"
 #include <stdlib.h>
 
+//Default parameters
 #define defaultSize 8
 #define defaultMines 10
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) NSArray* mines;
 
 - (void)resetGame;
+- (void)endGameWithStatus:(BOOL)didWin;
 
 @end
 
@@ -86,6 +88,7 @@
             [nButton setX:x];
             [nButton setY:y];
             [nButton setIsMine:NO];
+            [nButton setIsRevealed:NO];
             [nButton setBackgroundColor:[UIColor blackColor]];
             [nButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
             [nButton addTarget:self action:@selector(buttonTouchedDown) forControlEvents:UIControlEventTouchDown];
@@ -125,6 +128,7 @@
 
 - (void)resetGame {
     isGameOver = NO;
+    [smiley setImage:[UIImage imageNamed:@"smile.gif"] forState:UIControlStateNormal];
     for (NSArray* row in buttons) {
         for (KTCCoordinateButton* button in row) {
             [button reset];
@@ -146,23 +150,20 @@
     mines = tempMines;
 }
 
-- (void)checkAdjacentMines:(KTCCoordinateButton*)button {
+- (BOOL)checkSelfAndAdjacentMines:(KTCCoordinateButton*)button {
+    /* Reveal the given button. If it's a mine, game over, and return NO. If it's not, show the number of adjacent mines and return YES. If it has no adjacent mines, perform on all unrevealed neighbors */
+    [button setUserInteractionEnabled:NO]; //Disable the button once it's been revealed
+
     if ([button isMine]) {
-        //Boom
-        [smiley setImage:[UIImage imageNamed:@"dead.gif"] forState:UIControlStateNormal];
-        isGameOver = YES;
-        for (KTCCoordinateButton* b in mines) {
-            [b setBackgroundColor:[UIColor redColor]];
-        }
-;
-        [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
+        [self endGameWithStatus:NO];
+        return NO;
     } else {
         [button setBackgroundColor:[UIColor whiteColor]];
         [button setIsRevealed:YES];
         
-        //Get count of adjacent mines
         int numMinesTouching = 0;
         NSMutableArray* adjacentUnrevealed = [NSMutableArray array];
+        //Count adjacent mines, gather unrevealed neighbors
         for (int y = button.y - 1; y <= button.y + 1; y++) {
             if (-1 == y || y == buttonsOnASide) {
                 continue; //Skip the cells that don't actually exist
@@ -181,31 +182,60 @@
                 }
             }
         }
+        
         //Reveal count
         [button.textLabel setText:[NSString stringWithFormat:@"%d", numMinesTouching]];
         
         //Reveal all adjacent squares for squares with 0 touching
         if (0 == numMinesTouching) {
             for (KTCCoordinateButton* b in adjacentUnrevealed) {
-                [self checkAdjacentMines:b];
+                [self checkSelfAndAdjacentMines:b];
             }            
         }
         
-
+        return YES;
     }
-    [button setUserInteractionEnabled:NO]; //Disable the button once it's been revealed    
 }
 
 - (IBAction)buttonClicked:(id)sender {
     KTCCoordinateButton* button = (KTCCoordinateButton *) sender;
-    [self checkAdjacentMines:button];
+    [self checkSelfAndAdjacentMines:button];
+}
+
+- (void)endGameWithStatus:(BOOL)didWin {
+    [self setIsGameOver:YES];
+    if (didWin) {
+        [smiley setImage:[UIImage imageNamed:@"cool.gif"] forState:UIControlStateNormal];
+        [[[UIAlertView alloc] initWithTitle:@"Congratulations!" message:@"You won!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+    } else {
+        //Boom
+        [smiley setImage:[UIImage imageNamed:@"dead.gif"] forState:UIControlStateNormal];
+        for (KTCCoordinateButton* b in mines) {
+            [b setBackgroundColor:[UIColor redColor]];
+        }
+        ;
+        [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
+    }
+}
+
+- (BOOL)hasWon {
+    /* We are in a winning position if all buttons are either revealed or mines. We are in a losing position if there are any unrevealed non-mines
+     */
+    for (NSArray* row in buttons) {
+        for (KTCCoordinateButton* button in row) {
+            if (![button isRevealed] &! [button isMine]) {
+                return NO;
+            }
+        }
+    }
+    return YES;
 }
 
 - (IBAction)smileyClicked:(id)sender {
     if (isGameOver) {
         [self resetGame];
     } else {
-        
+        [self endGameWithStatus:[self hasWon]];
     }
 }
 
