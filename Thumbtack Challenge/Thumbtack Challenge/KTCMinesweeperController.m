@@ -20,8 +20,11 @@
 
 @interface KTCMinesweeperController()
 
+@property (nonatomic) BOOL isGameOver;
 @property (nonatomic, strong) NSArray* buttons;
 @property (nonatomic, strong) NSArray* mines;
+
+- (void)resetGame;
 
 @end
 
@@ -29,6 +32,7 @@
 
 @synthesize buttonsContainer;
 @synthesize smiley;
+@synthesize isGameOver;
 @synthesize buttons;
 @synthesize buttonsOnASide, numberOfMines, mines;
 
@@ -94,18 +98,7 @@
     
     
     //Set up mines
-    NSMutableArray* tempMines = [NSMutableArray arrayWithCapacity:numberOfMines];
-    
-    while ([tempMines count] < numberOfMines) {
-        x = arc4random_uniform(buttonsOnASide);
-        y = arc4random_uniform(buttonsOnASide);
-        KTCCoordinateButton* b = [[buttons objectAtIndex:y] objectAtIndex:x];
-        if (![b isMine]) {
-            [b setIsMine:YES];
-            [tempMines addObject:b];
-        }
-    }
-    mines = tempMines;
+    [self resetGame];
 }
 
 - (void)viewDidUnload
@@ -126,10 +119,36 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Game Utils
+
+- (void)resetGame {
+    isGameOver = NO;
+    for (NSArray* row in buttons) {
+        for (KTCCoordinateButton* button in row) {
+            [button reset];
+        }
+    }
+    
+    int x,y;
+    NSMutableArray* tempMines = [NSMutableArray arrayWithCapacity:numberOfMines];
+    
+    while ([tempMines count] < numberOfMines) {
+        x = arc4random_uniform(buttonsOnASide);
+        y = arc4random_uniform(buttonsOnASide);
+        KTCCoordinateButton* b = [[buttons objectAtIndex:y] objectAtIndex:x];
+        if (![b isMine]) {
+            [b setIsMine:YES];
+            [tempMines addObject:b];
+        }
+    }
+    mines = tempMines;
+}
+
 - (void)checkAdjacentMines:(KTCCoordinateButton*)button {
     if ([button isMine]) {
         //Boom
         [smiley setImage:[UIImage imageNamed:@"dead.gif"] forState:UIControlStateNormal];
+        isGameOver = YES;
         for (KTCCoordinateButton* b in mines) {
             [b setBackgroundColor:[UIColor redColor]];
         }
@@ -161,10 +180,7 @@
             }
         }
         //Reveal count
-        UILabel* l = [[UILabel alloc] initWithFrame:button.bounds];
-        [l setText:[NSString stringWithFormat:@"%d", numMinesTouching]];
-        [l setTextAlignment:UITextAlignmentCenter];
-        [button addSubview:l];
+        [button.textLabel setText:[NSString stringWithFormat:@"%d", numMinesTouching]];
         
         //Reveal all adjacent squares for squares with 0 touching
         if (0 == numMinesTouching) {
@@ -181,6 +197,14 @@
 - (IBAction)buttonClicked:(id)sender {
     KTCCoordinateButton* button = (KTCCoordinateButton *) sender;
     [self checkAdjacentMines:button];
+}
+
+- (IBAction)smileyClicked:(id)sender {
+    if (isGameOver) {
+        [self resetGame];
+    } else {
+        
+    }
 }
 
 @end

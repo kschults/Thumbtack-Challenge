@@ -17,5 +17,6 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *smiley;
 
 - (IBAction)buttonClicked:(id)sender;
+- (IBAction)smileyClicked:(id)sender;
 
 @end

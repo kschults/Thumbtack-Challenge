@@ -10,9 +10,13 @@
 
 @interface KTCCoordinateButton : UIButton
 
+@property (nonatomic, unsafe_unretained) UILabel* textLabel;
+
 @property (nonatomic) NSInteger x;
 @property (nonatomic) NSInteger y;
 @property (nonatomic) BOOL isMine;
 @property (nonatomic) BOOL isRevealed;
+
+- (void)reset;
 
 @end
