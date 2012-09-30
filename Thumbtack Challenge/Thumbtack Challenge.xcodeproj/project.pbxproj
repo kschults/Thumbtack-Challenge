@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C032BF5816190C8400A3B549 /* KTCWelcomeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C032BF5616190C8400A3B549 /* KTCWelcomeScreen.m */; };
 		C032BF5916190C8400A3B549 /* KTCWelcomeScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C032BF5716190C8400A3B549 /* KTCWelcomeScreen.xib */; };
+		C032BF5C161912D700A3B549 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C032BF5B161912D700A3B549 /* appIcon.png */; };
 		C0F30D9F1618BEF6001B72D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F30D9E1618BEF6001B72D2 /* UIKit.framework */; };
 		C0F30DA11618BEF6001B72D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F30DA01618BEF6001B72D2 /* Foundation.framework */; };
 		C0F30DA31618BEF6001B72D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F30DA21618BEF6001B72D2 /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 		C032BF5516190C8400A3B549 /* KTCWelcomeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCWelcomeScreen.h; sourceTree = "<group>"; };
 		C032BF5616190C8400A3B549 /* KTCWelcomeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCWelcomeScreen.m; sourceTree = "<group>"; };
 		C032BF5716190C8400A3B549 /* KTCWelcomeScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTCWelcomeScreen.xib; sourceTree = "<group>"; };
+		C032BF5B161912D700A3B549 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appIcon.png; path = ../../appIcon.png; sourceTree = "<group>"; };
 		C0F30D9A1618BEF6001B72D2 /* Thumbtack Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thumbtack Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F30D9E1618BEF6001B72D2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C0F30DA01618BEF6001B72D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,6 +133,7 @@
 		C0F30DF21618EB06001B72D2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C032BF5B161912D700A3B549 /* appIcon.png */,
 				C0F30DF71618F0DB001B72D2 /* cool.gif */,
 				C0F30DF81618F0DB001B72D2 /* uhoh.gif */,
 				C0F30DF31618EB06001B72D2 /* dead.gif */,
@@ -197,6 +200,7 @@
 				C0F30DF91618F0DB001B72D2 /* cool.gif in Resources */,
 				C0F30DFA1618F0DB001B72D2 /* uhoh.gif in Resources */,
 				C032BF5916190C8400A3B549 /* KTCWelcomeScreen.xib in Resources */,
+				C032BF5C161912D700A3B549 /* appIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
