@@ -19,14 +19,13 @@
 @interface KTCMinesweeperController()
 
 @property (nonatomic, strong) NSArray* buttons;
-@property (nonatomic, strong) NSArray* mines;
 
 @end
 
 @implementation KTCMinesweeperController
 
 @synthesize buttonsContainer;
-@synthesize buttons, mines;
+@synthesize buttons;
 @synthesize buttonsOnASide, numberOfMines;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -78,6 +77,7 @@
             KTCCoordinateButton* nButton = [[KTCCoordinateButton alloc] initWithFrame:nButtonFrame];
             [nButton setX:x];
             [nButton setY:y];
+            [nButton setIsMine:NO];
             [nButton setBackgroundColor:[UIColor blueColor]];
             [nButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -97,11 +97,10 @@
         y = arc4random_uniform(buttonsOnASide);
         KTCCoordinateButton* b = [[buttons objectAtIndex:y] objectAtIndex:x];
         if (![tempMines containsObject:b]) {
-            [tempMines addObject:b];
+            [b setIsMine:YES];
             [b setBackgroundColor:[UIColor redColor]];
         }
     }
-    mines = tempMines;
 }
 
 - (void)viewDidUnload
@@ -111,7 +110,6 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     [self setButtons:nil];
-    [self setMines:nil];
     [self setButtonsContainer:nil];
 }
 
@@ -123,7 +121,7 @@
 
 - (IBAction)buttonClicked:(id)sender {
     KTCCoordinateButton* b = (KTCCoordinateButton *) sender;
-    if ([mines containsObject:b]) {
+    if ([b isMine]) {
         //Boom
         [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
     } else {

@@ -10,6 +10,6 @@
 
 @implementation KTCCoordinateButton
 
-@synthesize x,y;
+@synthesize x,y, isMine;
 
 @end
