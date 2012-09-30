@@ -9,17 +9,24 @@
 #import "KTCAppDelegate.h"
 #import "KTCMinesweeperController.h"
 
+@interface KTCAppDelegate()
+
+@property (nonatomic, strong) KTCMinesweeperController* controller;
+
+@end
+
 @implementation KTCAppDelegate
 
 @synthesize window = _window;
+@synthesize controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    KTCMinesweeperController* c = [[KTCMinesweeperController alloc] initWithNibName:@"KTCMinesweeperController" bundle:[NSBundle mainBundle]];
+    controller = [[KTCMinesweeperController alloc] initWithNibName:@"KTCMinesweeperController" bundle:[NSBundle mainBundle]];
     
-    [self.window addSubview:c.view];
+    [self.window addSubview:controller.view];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
