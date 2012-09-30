@@ -19,6 +19,7 @@
 @interface KTCMinesweeperController()
 
 @property (nonatomic, strong) NSArray* buttons;
+@property (nonatomic, strong) NSArray* mines;
 
 @end
 
@@ -26,7 +27,7 @@
 
 @synthesize buttonsContainer;
 @synthesize buttons;
-@synthesize buttonsOnASide, numberOfMines;
+@synthesize buttonsOnASide, numberOfMines, mines;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,6 +102,7 @@
             [tempMines addObject:b];
         }
     }
+    mines = tempMines;
 }
 
 - (void)viewDidUnload
@@ -109,6 +111,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [self setMines:nil];
     [self setButtons:nil];
     [self setButtonsContainer:nil];
 }
@@ -122,7 +125,10 @@
 - (void)checkAdjacentMines:(KTCCoordinateButton*)button {
     if ([button isMine]) {
         //Boom
-        [button setBackgroundColor:[UIColor redColor]];
+        for (KTCCoordinateButton* b in mines) {
+            [b setBackgroundColor:[UIColor redColor]];
+        }
+;
         [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
     } else {
         [button setBackgroundColor:[UIColor whiteColor]];
