@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C032BF5816190C8400A3B549 /* KTCWelcomeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C032BF5616190C8400A3B549 /* KTCWelcomeScreen.m */; };
+		C032BF5916190C8400A3B549 /* KTCWelcomeScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C032BF5716190C8400A3B549 /* KTCWelcomeScreen.xib */; };
 		C0F30D9F1618BEF6001B72D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F30D9E1618BEF6001B72D2 /* UIKit.framework */; };
 		C0F30DA11618BEF6001B72D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F30DA01618BEF6001B72D2 /* Foundation.framework */; };
 		C0F30DA31618BEF6001B72D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F30DA21618BEF6001B72D2 /* CoreGraphics.framework */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C032BF5516190C8400A3B549 /* KTCWelcomeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCWelcomeScreen.h; sourceTree = "<group>"; };
+		C032BF5616190C8400A3B549 /* KTCWelcomeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCWelcomeScreen.m; sourceTree = "<group>"; };
+		C032BF5716190C8400A3B549 /* KTCWelcomeScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTCWelcomeScreen.xib; sourceTree = "<group>"; };
 		C0F30D9A1618BEF6001B72D2 /* Thumbtack Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thumbtack Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F30D9E1618BEF6001B72D2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C0F30DA01618BEF6001B72D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +102,9 @@
 				C0F30DB71618C23C001B72D2 /* KTCMinesweeperController.xib */,
 				C0F30DBD1618C78B001B72D2 /* KTCCoordinateButton.h */,
 				C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */,
+				C032BF5516190C8400A3B549 /* KTCWelcomeScreen.h */,
+				C032BF5616190C8400A3B549 /* KTCWelcomeScreen.m */,
+				C032BF5716190C8400A3B549 /* KTCWelcomeScreen.xib */,
 			);
 			path = "Thumbtack Challenge";
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				C0F30DF61618EB06001B72D2 /* smile.gif in Resources */,
 				C0F30DF91618F0DB001B72D2 /* cool.gif in Resources */,
 				C0F30DFA1618F0DB001B72D2 /* uhoh.gif in Resources */,
+				C032BF5916190C8400A3B549 /* KTCWelcomeScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +211,7 @@
 				C0F30DAF1618BEF6001B72D2 /* KTCAppDelegate.m in Sources */,
 				C0F30DB81618C23C001B72D2 /* KTCMinesweeperController.m in Sources */,
 				C0F30DBF1618C78B001B72D2 /* KTCCoordinateButton.m in Sources */,
+				C032BF5816190C8400A3B549 /* KTCWelcomeScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

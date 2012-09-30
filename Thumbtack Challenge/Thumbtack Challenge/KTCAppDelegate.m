@@ -7,26 +7,30 @@
 //
 
 #import "KTCAppDelegate.h"
-#import "KTCMinesweeperController.h"
+#import "KTCWelcomeScreen.h"
 
 @interface KTCAppDelegate()
 
-@property (nonatomic, strong) KTCMinesweeperController* controller;
+@property (nonatomic, strong) UINavigationController* navController;
 
 @end
 
 @implementation KTCAppDelegate
 
 @synthesize window = _window;
-@synthesize controller;
+@synthesize navController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    controller = [[KTCMinesweeperController alloc] initWithNibName:@"KTCMinesweeperController" bundle:[NSBundle mainBundle]];
     
-    [self.window addSubview:controller.view];
+    KTCWelcomeScreen* root = [[KTCWelcomeScreen alloc] initWithNibName:@"KTCWelcomeScreen" bundle:[NSBundle mainBundle]];
+    
+    navController = [[UINavigationController alloc] initWithRootViewController:root];
+    [navController.navigationBar setHidden:YES];
+    
+    [self.window addSubview:navController.view];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
