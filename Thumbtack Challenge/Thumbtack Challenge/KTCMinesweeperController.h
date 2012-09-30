@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KTCMinesweeperController : UIViewController
+@interface KTCMinesweeperController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic) NSInteger buttonsOnASide;
 @property (nonatomic) NSInteger numberOfMines;

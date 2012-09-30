@@ -206,7 +206,7 @@
     [self setIsGameOver:YES];
     if (didWin) {
         [smiley setImage:[UIImage imageNamed:@"cool.gif"] forState:UIControlStateNormal];
-        [[[UIAlertView alloc] initWithTitle:@"Congratulations!" message:@"You won!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Congratulations!" message:@"You won!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Play Again", @"Quit", nil] show];
     } else {
         //Boom
         [smiley setImage:[UIImage imageNamed:@"dead.gif"] forState:UIControlStateNormal];
@@ -214,7 +214,7 @@
             [b setBackgroundColor:[UIColor redColor]];
         }
         ;
-        [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Play Again", @"Quit", nil] show];
     }
 }
 
@@ -245,6 +245,15 @@
 - (void)buttonTouchUp {
     if (!isGameOver) {
         [smiley setImage:[UIImage imageNamed:@"smile.gif"] forState:UIControlStateNormal];        
+    }
+}
+
+#pragma mark - UIAlertViewDelegate protocol
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (0 == buttonIndex) { //Play Again
+        [self resetGame];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
