@@ -16,6 +16,8 @@
 		C0F30DB81618C23C001B72D2 /* KTCMinesweeperController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DB61618C23C001B72D2 /* KTCMinesweeperController.m */; };
 		C0F30DB91618C23C001B72D2 /* KTCMinesweeperController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DB71618C23C001B72D2 /* KTCMinesweeperController.xib */; };
 		C0F30DBF1618C78B001B72D2 /* KTCCoordinateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */; };
+		C0F30DF51618EB06001B72D2 /* dead.gif in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DF31618EB06001B72D2 /* dead.gif */; };
+		C0F30DF61618EB06001B72D2 /* smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DF41618EB06001B72D2 /* smile.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		C0F30DB71618C23C001B72D2 /* KTCMinesweeperController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTCMinesweeperController.xib; sourceTree = "<group>"; };
 		C0F30DBD1618C78B001B72D2 /* KTCCoordinateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCCoordinateButton.h; sourceTree = "<group>"; };
 		C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCCoordinateButton.m; sourceTree = "<group>"; };
+		C0F30DF31618EB06001B72D2 /* dead.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dead.gif; sourceTree = "<group>"; };
+		C0F30DF41618EB06001B72D2 /* smile.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 				C0F30DA41618BEF6001B72D2 /* Thumbtack Challenge */,
 				C0F30D9D1618BEF6001B72D2 /* Frameworks */,
 				C0F30D9B1618BEF6001B72D2 /* Products */,
+				C0F30DD81618EAD3001B72D2 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +106,24 @@
 				C0F30DAC1618BEF6001B72D2 /* Thumbtack Challenge-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0F30DD81618EAD3001B72D2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C0F30DF21618EB06001B72D2 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C0F30DF21618EB06001B72D2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C0F30DF31618EB06001B72D2 /* dead.gif */,
+				C0F30DF41618EB06001B72D2 /* smile.gif */,
+			);
+			name = Images;
+			path = "Thumbtack Challenge/Images";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +178,8 @@
 			files = (
 				C0F30DA91618BEF6001B72D2 /* InfoPlist.strings in Resources */,
 				C0F30DB91618C23C001B72D2 /* KTCMinesweeperController.xib in Resources */,
+				C0F30DF51618EB06001B72D2 /* dead.gif in Resources */,
+				C0F30DF61618EB06001B72D2 /* smile.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

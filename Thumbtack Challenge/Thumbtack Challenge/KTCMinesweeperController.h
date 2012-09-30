@@ -14,6 +14,7 @@
 @property (nonatomic) NSInteger numberOfMines;
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *buttonsContainer;
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *smiley;
 
 - (IBAction)buttonClicked:(id)sender;
 

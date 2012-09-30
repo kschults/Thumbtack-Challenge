@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+// Minesweeper images via http://www.personal.kent.edu/~bherzog/
+
 #import "KTCMinesweeperController.h"
 #import "KTCCoordinateButton.h"
 #include <stdlib.h>
@@ -26,6 +28,7 @@
 @implementation KTCMinesweeperController
 
 @synthesize buttonsContainer;
+@synthesize smiley;
 @synthesize buttons;
 @synthesize buttonsOnASide, numberOfMines, mines;
 
@@ -108,6 +111,7 @@
 - (void)viewDidUnload
 {
     [self setButtonsContainer:nil];
+    [self setSmiley:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -125,6 +129,7 @@
 - (void)checkAdjacentMines:(KTCCoordinateButton*)button {
     if ([button isMine]) {
         //Boom
+        [smiley setImage:[UIImage imageNamed:@"dead.gif"] forState:UIControlStateNormal];
         for (KTCCoordinateButton* b in mines) {
             [b setBackgroundColor:[UIColor redColor]];
         }
