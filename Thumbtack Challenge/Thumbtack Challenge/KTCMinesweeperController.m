@@ -79,6 +79,7 @@
             [nButton setX:x];
             [nButton setY:y];
             [nButton setBackgroundColor:[UIColor blueColor]];
+            [nButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
             
             [buttonsContainer addSubview:nButton];
             [nthRow addObject:nButton];
@@ -109,12 +110,26 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [self setButtons:nil];
+    [self setMines:nil];
+    [self setButtonsContainer:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)buttonClicked:(id)sender {
+    KTCCoordinateButton* b = (KTCCoordinateButton *) sender;
+    if ([mines containsObject:b]) {
+        //Boom
+        [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
+    } else {
+        [b setBackgroundColor:[UIColor whiteColor]];
+    }
+    [b setUserInteractionEnabled:NO]; //Disable the button once it's been revealed
 }
 
 @end

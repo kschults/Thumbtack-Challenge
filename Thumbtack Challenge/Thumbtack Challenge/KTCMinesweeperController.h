@@ -15,4 +15,6 @@
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *buttonsContainer;
 
+- (IBAction)buttonClicked:(id)sender;
+
 @end
