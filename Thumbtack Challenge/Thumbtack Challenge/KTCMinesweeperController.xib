@@ -93,10 +93,9 @@
 					<object class="IBUIView" id="13860965">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 108}, {280, 332}}</string>
+						<string key="NSFrame">{{0, 108}, {320, 332}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -226,11 +225,21 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="buttonClicked:">id</string>
+						<string key="buttonTouchUp">id</string>
+						<string key="buttonTouchedDown">id</string>
 						<string key="smileyClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="buttonClicked:">
 							<string key="name">buttonClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="buttonTouchUp">
+							<string key="name">buttonTouchUp</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="buttonTouchedDown">
+							<string key="name">buttonTouchedDown</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="smileyClicked:">

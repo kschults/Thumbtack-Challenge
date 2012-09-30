@@ -83,7 +83,7 @@
         NSMutableArray* nthRow = [[NSMutableArray alloc] initWithCapacity:y];
         
         for (x=0; x<buttonsOnASide; x++) {
-            CGRect nButtonFrame = CGRectMake(x *(buttonWidth + buttonSpace), y *(buttonWidth + buttonSpace), buttonWidth, buttonWidth);
+            CGRect nButtonFrame = CGRectMake(x *buttonWidth + (x + 1) * buttonSpace, y * buttonWidth + (y + 1) * buttonSpace, buttonWidth, buttonWidth);
             KTCCoordinateButton* nButton = [[KTCCoordinateButton alloc] initWithFrame:nButtonFrame];
             [nButton setX:x];
             [nButton setY:y];
