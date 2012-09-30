@@ -13,6 +13,9 @@
 		C0F30DA91618BEF6001B72D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DA71618BEF6001B72D2 /* InfoPlist.strings */; };
 		C0F30DAB1618BEF6001B72D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DAA1618BEF6001B72D2 /* main.m */; };
 		C0F30DAF1618BEF6001B72D2 /* KTCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DAE1618BEF6001B72D2 /* KTCAppDelegate.m */; };
+		C0F30DB81618C23C001B72D2 /* KTCMinesweeperController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DB61618C23C001B72D2 /* KTCMinesweeperController.m */; };
+		C0F30DB91618C23C001B72D2 /* KTCMinesweeperController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F30DB71618C23C001B72D2 /* KTCMinesweeperController.xib */; };
+		C0F30DBF1618C78B001B72D2 /* KTCCoordinateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,11 @@
 		C0F30DAC1618BEF6001B72D2 /* Thumbtack Challenge-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thumbtack Challenge-Prefix.pch"; sourceTree = "<group>"; };
 		C0F30DAD1618BEF6001B72D2 /* KTCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTCAppDelegate.h; sourceTree = "<group>"; };
 		C0F30DAE1618BEF6001B72D2 /* KTCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTCAppDelegate.m; sourceTree = "<group>"; };
+		C0F30DB51618C23C001B72D2 /* KTCMinesweeperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCMinesweeperController.h; sourceTree = "<group>"; };
+		C0F30DB61618C23C001B72D2 /* KTCMinesweeperController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCMinesweeperController.m; sourceTree = "<group>"; };
+		C0F30DB71618C23C001B72D2 /* KTCMinesweeperController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTCMinesweeperController.xib; sourceTree = "<group>"; };
+		C0F30DBD1618C78B001B72D2 /* KTCCoordinateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCCoordinateButton.h; sourceTree = "<group>"; };
+		C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCCoordinateButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +83,11 @@
 				C0F30DAD1618BEF6001B72D2 /* KTCAppDelegate.h */,
 				C0F30DAE1618BEF6001B72D2 /* KTCAppDelegate.m */,
 				C0F30DA51618BEF6001B72D2 /* Supporting Files */,
+				C0F30DB51618C23C001B72D2 /* KTCMinesweeperController.h */,
+				C0F30DB61618C23C001B72D2 /* KTCMinesweeperController.m */,
+				C0F30DB71618C23C001B72D2 /* KTCMinesweeperController.xib */,
+				C0F30DBD1618C78B001B72D2 /* KTCCoordinateButton.h */,
+				C0F30DBE1618C78B001B72D2 /* KTCCoordinateButton.m */,
 			);
 			path = "Thumbtack Challenge";
 			sourceTree = "<group>";
@@ -141,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F30DA91618BEF6001B72D2 /* InfoPlist.strings in Resources */,
+				C0F30DB91618C23C001B72D2 /* KTCMinesweeperController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +167,8 @@
 			files = (
 				C0F30DAB1618BEF6001B72D2 /* main.m in Sources */,
 				C0F30DAF1618BEF6001B72D2 /* KTCAppDelegate.m in Sources */,
+				C0F30DB81618C23C001B72D2 /* KTCMinesweeperController.m in Sources */,
+				C0F30DBF1618C78B001B72D2 /* KTCCoordinateButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +237,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thumbtack Challenge/Thumbtack Challenge-Prefix.pch";
 				INFOPLIST_FILE = "Thumbtack Challenge/Thumbtack Challenge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -232,6 +249,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thumbtack Challenge/Thumbtack Challenge-Prefix.pch";
 				INFOPLIST_FILE = "Thumbtack Challenge/Thumbtack Challenge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -256,6 +274,7 @@
 				C0F30DB41618BEF6001B72D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
