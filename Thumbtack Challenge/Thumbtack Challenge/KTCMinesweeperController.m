@@ -10,7 +10,7 @@
 #import "KTCCoordinateButton.h"
 #include <stdlib.h>
 
-#define defaultSize 5
+#define defaultSize 8
 #define defaultMines 10
 
 //Padding between buttons
@@ -78,7 +78,7 @@
             [nButton setX:x];
             [nButton setY:y];
             [nButton setIsMine:NO];
-            [nButton setBackgroundColor:[UIColor blueColor]];
+            [nButton setBackgroundColor:[UIColor blackColor]];
             [nButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
             
             [buttonsContainer addSubview:nButton];
@@ -96,9 +96,9 @@
         x = arc4random_uniform(buttonsOnASide);
         y = arc4random_uniform(buttonsOnASide);
         KTCCoordinateButton* b = [[buttons objectAtIndex:y] objectAtIndex:x];
-        if (![tempMines containsObject:b]) {
+        if (![b isMine]) {
             [b setIsMine:YES];
-            [b setBackgroundColor:[UIColor redColor]];
+            [tempMines addObject:b];
         }
     }
 }
@@ -119,15 +119,57 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)buttonClicked:(id)sender {
-    KTCCoordinateButton* b = (KTCCoordinateButton *) sender;
-    if ([b isMine]) {
+- (void)checkAdjacentMines:(KTCCoordinateButton*)button {
+    if ([button isMine]) {
         //Boom
+        [button setBackgroundColor:[UIColor redColor]];
         [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:nil cancelButtonTitle:@"Try Again" otherButtonTitles:nil] show];
     } else {
-        [b setBackgroundColor:[UIColor whiteColor]];
+        [button setBackgroundColor:[UIColor whiteColor]];
+        [button setIsRevealed:YES];
+        
+        //Get count of adjacent mines
+        int numMinesTouching = 0;
+        NSMutableArray* adjacentUnrevealed = [NSMutableArray array];
+        for (int y = button.y - 1; y <= button.y + 1; y++) {
+            if (-1 == y || y == buttonsOnASide) {
+                continue; //Skip the cells that don't actually exist
+            }
+            NSArray* row = [buttons objectAtIndex:y];
+            for (int x = button.x - 1; x <= button.x + 1; x++) {
+                if (-1 == x || x == buttonsOnASide) {
+                    continue;
+                }
+                KTCCoordinateButton* b = [row objectAtIndex:x];
+                if ([b isMine]) {
+                    numMinesTouching++;
+                }
+                if (![b isRevealed]) {
+                    [adjacentUnrevealed addObject:b];                    
+                }
+            }
+        }
+        //Reveal count
+        UILabel* l = [[UILabel alloc] initWithFrame:button.bounds];
+        [l setText:[NSString stringWithFormat:@"%d", numMinesTouching]];
+        [l setTextAlignment:UITextAlignmentCenter];
+        [button addSubview:l];
+        
+        //Reveal all adjacent squares for squares with 0 touching
+        if (0 == numMinesTouching) {
+            for (KTCCoordinateButton* b in adjacentUnrevealed) {
+                [self checkAdjacentMines:b];
+            }            
+        }
+        
+
     }
-    [b setUserInteractionEnabled:NO]; //Disable the button once it's been revealed
+    [button setUserInteractionEnabled:NO]; //Disable the button once it's been revealed    
+}
+
+- (IBAction)buttonClicked:(id)sender {
+    KTCCoordinateButton* button = (KTCCoordinateButton *) sender;
+    [self checkAdjacentMines:button];
 }
 
 @end
