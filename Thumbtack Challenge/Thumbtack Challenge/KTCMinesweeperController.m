@@ -222,7 +222,6 @@
         for (KTCCoordinateButton* b in mines) {
             [b setBackgroundColor:[UIColor redColor]];
         }
-        ;
         [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Play Again", @"Quit", nil] show];
     }
 }
@@ -265,6 +264,9 @@
 - (void)didDoubleTapButton:(KTCCoordinateButton *)b {
     if (b.isRevealed) {
         [self checkSelfAndAdjacentMines: b alwaysReveal:YES];
+        if ([self hasWon]) {
+            [self endGameWithStatus:YES];
+        }
     } else {
         [b toggleFlag];
     }
