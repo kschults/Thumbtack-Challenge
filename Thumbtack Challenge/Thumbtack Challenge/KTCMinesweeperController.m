@@ -119,7 +119,7 @@
     static NSString* prefKey = @"firstView";
     NSUserDefaults* prefs = [NSUserDefaults standardUserDefaults];
     if (![prefs boolForKey:prefKey]) {
-        [[[UIAlertView alloc] initWithTitle:@"Welcome to Minesweeper" message:@"Tap once to reveal a space, tap twice to flag as a mine." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Welcome to Minesweeper" message:@"Tap once to reveal a space, tap twice to flag as a mine. Double tap a revealed space to reveal all unflagged adjacent spaces." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
         [prefs setBool:YES forKey:prefKey];
     }
 }
@@ -150,11 +150,9 @@
     mines = tempMines;
 }
 
-- (BOOL)checkSelfAndAdjacentMines:(KTCCoordinateButton*)button {
+- (BOOL)checkSelfAndAdjacentMines:(KTCCoordinateButton*)button alwaysReveal:(BOOL)alwaysReveal {
     /* Reveal the given button. If it's a mine, game over, and return NO. If it's not, show the number of adjacent mines and return YES. If it has no adjacent mines, perform on all unrevealed neighbors */
-    [button setUserInteractionEnabled:NO]; //Disable the button once it's been revealed
-
-    if ([button isMine]) {
+    if ([button isMine] &! [button isFlagged]) {
         [self endGameWithStatus:NO];
         return NO;
     } else {
@@ -187,9 +185,9 @@
         [button.textLabel setText:[NSString stringWithFormat:@"%d", numMinesTouching]];
         
         //Reveal all adjacent squares for squares with 0 touching
-        if (0 == numMinesTouching) {
+        if (0 == numMinesTouching || alwaysReveal) {
             for (KTCCoordinateButton* b in adjacentUnrevealed) {
-                [self checkSelfAndAdjacentMines:b];
+                [self checkSelfAndAdjacentMines:b alwaysReveal:NO];
             }            
         }
         
@@ -255,14 +253,19 @@
 }
 
 - (void)didSingleTapButton:(KTCCoordinateButton *)b {
-    [self checkSelfAndAdjacentMines:b];
+    [self checkSelfAndAdjacentMines:b alwaysReveal:NO];
     if ([self hasWon]) {
         [self endGameWithStatus:YES];
     }
 }
 
 - (void)didDoubleTapButton:(KTCCoordinateButton *)b {
-    [b toggleFlag];
+    if (b.isRevealed) {
+        [self checkSelfAndAdjacentMines: b alwaysReveal:YES];
+    } else {
+        [b toggleFlag];
+    }
+    
     
 }
 

@@ -50,18 +50,24 @@
 }
 
 - (void)touchBeganOnButton {
-    [delegate touchBeganOnButton:self];
+    if (!self.isRevealed) {
+        [delegate touchBeganOnButton:self];        
+    }
 }
 - (void)touchEndedOnButton {
-    [delegate touchEndedOnButton:self];
+    if (!self.isRevealed) {
+        [delegate touchEndedOnButton:self];        
+    }
 }
 - (void)handleSingleTap {
-    [delegate touchEndedOnButton:self];
-    [delegate didSingleTapButton:self];
+    if (!self.isRevealed) {
+        [delegate touchEndedOnButton:self];
+        [delegate didSingleTapButton:self];        
+    }
 }
 - (void)handleDoubleTap {
     [delegate touchEndedOnButton:self];
-    [delegate didDoubleTapButton:self];
+    [delegate didDoubleTapButton:self];        
 }
 
 - (void)setDelegate:(id<KTCCoordinateButtonDelegate>)d {
