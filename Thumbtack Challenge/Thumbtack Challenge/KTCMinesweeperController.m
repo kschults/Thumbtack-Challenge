@@ -9,7 +9,6 @@
 // Minesweeper images via http://www.personal.kent.edu/~bherzog/
 
 #import "KTCMinesweeperController.h"
-#import "KTCCoordinateButton.h"
 #include <stdlib.h>
 
 //Padding between buttons
@@ -83,12 +82,7 @@
             KTCCoordinateButton* nButton = [[KTCCoordinateButton alloc] initWithFrame:nButtonFrame];
             [nButton setX:x];
             [nButton setY:y];
-            [nButton setIsMine:NO];
-            [nButton setIsRevealed:NO];
-            [nButton setBackgroundColor:[UIColor blackColor]];
-            [nButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-            [nButton addTarget:self action:@selector(buttonTouchedDown) forControlEvents:UIControlEventTouchDown];
-            [nButton addTarget:self action:@selector(buttonTouchUp) forControlEvents:UIControlEventTouchUpOutside | UIControlEventTouchUpInside];
+            [nButton setDelegate:self];
             
             [buttonsContainer addSubview:nButton];
             [nthRow addObject:nButton];
@@ -125,7 +119,7 @@
     static NSString* prefKey = @"firstView";
     NSUserDefaults* prefs = [NSUserDefaults standardUserDefaults];
     if (![prefs boolForKey:prefKey]) {
-        [[[UIAlertView alloc] initWithTitle:@"Welcome to Minesweeper" message:@"Tap once to flag as a mine, tap twice to reveal" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Welcome to Minesweeper" message:@"Tap once to reveal a space, tap twice to flag as a mine." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
         [prefs setBool:YES forKey:prefKey];
     }
 }
@@ -216,14 +210,6 @@
     return YES;
 }
 
-- (IBAction)buttonClicked:(id)sender {
-    KTCCoordinateButton* button = (KTCCoordinateButton *) sender;
-    [self checkSelfAndAdjacentMines:button];
-    if ([self hasWon]) {
-        [self endGameWithStatus:YES];
-    }
-}
-
 - (void)endGameWithStatus:(BOOL)didWin {
     [self setIsGameOver:YES];
     if (didWin) {
@@ -248,15 +234,6 @@
     }
 }
 
-- (void)buttonTouchedDown {
-    [smiley setImage:[UIImage imageNamed:@"uhoh.gif"] forState:UIControlStateNormal];
-}
-- (void)buttonTouchUp {
-    if (!isGameOver) {
-        [smiley setImage:[UIImage imageNamed:@"smile.gif"] forState:UIControlStateNormal];        
-    }
-}
-
 #pragma mark - UIAlertViewDelegate protocol
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (0 == buttonIndex) { //Play Again
@@ -264,6 +241,29 @@
     } else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+#pragma mark - KTCCoordinateDelegate protocol
+- (void)touchBeganOnButton:(KTCCoordinateButton *)b {
+    [smiley setImage:[UIImage imageNamed:@"uhoh.gif"] forState:UIControlStateNormal];
+}
+
+- (void)touchEndedOnButton:(KTCCoordinateButton *)b {
+    if (!isGameOver) {
+        [smiley setImage:[UIImage imageNamed:@"smile.gif"] forState:UIControlStateNormal];        
+    }
+}
+
+- (void)didSingleTapButton:(KTCCoordinateButton *)b {
+    [self checkSelfAndAdjacentMines:b];
+    if ([self hasWon]) {
+        [self endGameWithStatus:YES];
+    }
+}
+
+- (void)didDoubleTapButton:(KTCCoordinateButton *)b {
+    [b toggleFlag];
+    
 }
 
 @end

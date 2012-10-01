@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KTCCoordinateButton.h"
 
 //Default parameters
 #define defaultSize 8
 #define defaultMines 10
 
-@interface KTCMinesweeperController : UIViewController <UIAlertViewDelegate>
+@interface KTCMinesweeperController : UIViewController <UIAlertViewDelegate, KTCCoordinateButtonDelegate>
 
 @property (nonatomic) NSInteger buttonsOnASide;
 @property (nonatomic) NSInteger numberOfMines;
@@ -20,9 +21,8 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *buttonsContainer;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *smiley;
 
-- (IBAction)buttonTouchedDown;
-- (IBAction)buttonTouchUp;
-- (IBAction)buttonClicked:(id)sender;
 - (IBAction)smileyClicked:(id)sender;
+//- (IBAction) buttonTouchDownRepeat:(id)sender event:(UIEvent *)event;
+
 
 @end
