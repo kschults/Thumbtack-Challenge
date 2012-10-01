@@ -12,10 +12,6 @@
 #import "KTCCoordinateButton.h"
 #include <stdlib.h>
 
-//Default parameters
-#define defaultSize 8
-#define defaultMines 10
-
 //Padding between buttons
 #define buttonSpace 5
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KTCWelcomeScreen : UIViewController
+@interface KTCWelcomeScreen : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 - (IBAction)newGame:(id)sender;
+@property (unsafe_unretained, nonatomic) IBOutlet UITableView *optionsTable;
 
 @end

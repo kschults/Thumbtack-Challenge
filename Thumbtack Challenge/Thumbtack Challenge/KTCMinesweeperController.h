@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+//Default parameters
+#define defaultSize 8
+#define defaultMines 10
+
 @interface KTCMinesweeperController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic) NSInteger buttonsOnASide;
