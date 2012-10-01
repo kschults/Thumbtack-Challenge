@@ -152,6 +152,9 @@
 
 - (BOOL)checkSelfAndAdjacentMines:(KTCCoordinateButton*)button alwaysReveal:(BOOL)alwaysReveal {
     /* Reveal the given button. If it's a mine, game over, and return NO. If it's not, show the number of adjacent mines and return YES. If it has no adjacent mines, perform on all unrevealed neighbors */
+    if (isGameOver) { //If the game is over, don't bother checking
+        return NO;
+    }
     if ([button isMine] &! [button isFlagged]) {
         [self endGameWithStatus:NO];
         return NO;
