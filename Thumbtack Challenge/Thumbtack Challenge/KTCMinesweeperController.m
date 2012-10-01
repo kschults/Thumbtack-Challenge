@@ -193,9 +193,25 @@
     }
 }
 
+- (BOOL)hasWon {
+    /* We are in a winning position if all buttons are either revealed or mines. We are in a losing position if there are any unrevealed non-mines
+     */
+    for (NSArray* row in buttons) {
+        for (KTCCoordinateButton* button in row) {
+            if (![button isRevealed] &! [button isMine]) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
 - (IBAction)buttonClicked:(id)sender {
     KTCCoordinateButton* button = (KTCCoordinateButton *) sender;
     [self checkSelfAndAdjacentMines:button];
+    if ([self hasWon]) {
+        [self endGameWithStatus:YES];
+    }
 }
 
 - (void)endGameWithStatus:(BOOL)didWin {
@@ -212,19 +228,6 @@
         ;
         [[[UIAlertView alloc] initWithTitle:@"BOOM!" message:@"Game Over" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Play Again", @"Quit", nil] show];
     }
-}
-
-- (BOOL)hasWon {
-    /* We are in a winning position if all buttons are either revealed or mines. We are in a losing position if there are any unrevealed non-mines
-     */
-    for (NSArray* row in buttons) {
-        for (KTCCoordinateButton* button in row) {
-            if (![button isRevealed] &! [button isMine]) {
-                return NO;
-            }
-        }
-    }
-    return YES;
 }
 
 - (IBAction)smileyClicked:(id)sender {
