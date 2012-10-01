@@ -102,8 +102,7 @@
     [self resetGame];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setButtonsContainer:nil];
     [self setSmiley:nil];
     [super viewDidUnload];
@@ -118,6 +117,17 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    static NSString* prefKey = @"firstView";
+    NSUserDefaults* prefs = [NSUserDefaults standardUserDefaults];
+    if (![prefs boolForKey:prefKey]) {
+        [[[UIAlertView alloc] initWithTitle:@"Welcome to Minesweeper" message:@"Tap once to flag as a mine, tap twice to reveal" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+        [prefs setBool:YES forKey:prefKey];
+    }
 }
 
 #pragma mark - Game Utils
