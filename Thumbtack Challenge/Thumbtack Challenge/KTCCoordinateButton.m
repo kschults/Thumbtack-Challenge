@@ -91,6 +91,7 @@
     [self setUserInteractionEnabled:YES];
     [self setBackgroundColor:MinesweeperGrey];
     [self.textLabel setText:@""];
+    [flagImage setHidden:YES];
 }
 
 - (void)toggleFlag {
