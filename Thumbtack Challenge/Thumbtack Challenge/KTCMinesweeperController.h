@@ -10,8 +10,8 @@
 #import "KTCCoordinateButton.h"
 
 //Default parameters
-#define defaultSize 8
-#define defaultMines 10
+#define defaultSize 10
+#define defaultMines 15
 
 @interface KTCMinesweeperController : UIViewController <UIAlertViewDelegate, KTCCoordinateButtonDelegate>
 

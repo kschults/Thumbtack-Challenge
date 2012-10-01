@@ -193,7 +193,7 @@ int shownPicker;
 #pragma mark - UIPickerView delegate protocols
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (0 == shownPicker) { //Grid size
-        return 16; //Probably about as big as we want to go - any bigger and it's hard to click
+        return 10; //Probably about as big as we want to go - any bigger and it's hard to click. 10x10 gives buttons a size of ~27px
     } else {
         return buttonsOnASide*buttonsOnASide; //You could have every button be a mine if you wanted
     }
